@@ -1,0 +1,13 @@
+﻿/*Panel CSS*/
+.img {
+    width: 70px;
+    height: 70px;
+    background-color: yellowgreen;
+    float: left
+}
+
+fieldset {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+/*Panel CSS*/

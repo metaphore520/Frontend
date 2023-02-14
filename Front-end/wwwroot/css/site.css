@@ -1,0 +1,95 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.link-button {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.customer-name-row {
+    border-right: 1px solid blue;
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+    width: 220px;
+    
+}
+
+.customer-name-row-parent {
+    height: 600px;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.action-button-section {
+    padding: 5px;
+    border: 3px solid blue;
+    margin: 10px;
+}
+
+.data-entry-form-section {
+    padding: 5px;
+    border: 3px solid blue;
+    margin: 10px;
+}
+
+.other-information-section {
+    padding: 5px;
+    border: 3px solid blue;
+    margin: 10px;
+}
+
+.DivToScroll {
+    background-color: #F5F5F5;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 0 4px 0;
+    color: #3B3C3E;
+    font-size: 12px;
+    font-weight: bold;
+    left: -1px;
+    padding: 10px 7px 5px;
+}
+
+.DivWithScroll {
+    height: 120px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+
+
+/*Panel CSS*/
+/*.img {
+    width: 70px;
+    height: 70px;
+    background-color: blue;
+    float: left
+}
+
+fieldset {
+    border: 1px solid black;
+    border-radius: 5px;
+}*/
+/*Panel CSS*/

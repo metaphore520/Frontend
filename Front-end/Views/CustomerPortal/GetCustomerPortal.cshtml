@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "GetCustomerPortalAsync";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>CUSTOMER LIST</h4>
+            <div class="customer-name-row-parent">
+                @foreach (var item in @ViewBag.CustomerList)
+                {
+                    <div class="row">
+                        <div class="col-md-12 customer-name-row">
+                            <button class="link-button" onclick="getCustomerById(@item.Id)">@item.CustomerName</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 action-button-section">
+                            <legend>Actions</legend>
+                            <button class="btn btn-primary btn-sm" onclick="Edit()">Edit</button>
+                            <input class="btn btn-primary btn-sm" id="btnSave" onclick="submitForm()" type="button" value="Save" />
+                            <button class="btn btn-primary btn-sm" onclick="deleteCustomerById()">Delete</button>
+                            <button class="btn btn-primary btn-sm" onclick="Clear()">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 data-entry-form-section">
+                            @* <form id="customerDataEntryForm">*@
+                            <fieldset>
+                                <legend>Basic Information</legend>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label for="fname"> NAME:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="CustomerName" id="CustomerName" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label for="lname">FATHER NAME</label>
+                                    </div><div class="col-md-4">
+                                        <input name="FatherName" id="FatherName" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label for="lname">MOTHER NAME</label>
+                                    </div><div class="col-md-4">
+                                        <input name="MotherName" id="MotherName" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label for="lname">MARITAL STATUS</label>
+
+                                        <input class="MaritalStatus" type="checkbox" name="MaritalSt" value="SINGLE">
+                                        <label for="lname">SINGLE</label>
+
+                                        <input class="MaritalStatus" type="checkbox" name="MaritalSt" value="MARRIED">
+                                        <label for="lname">MARRIED</label>
+
+                                        <input class="MaritalStatus" type="checkbox" name="MaritalSt" value="OTHERS">
+                                        <label for="lname">OTHERS</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="country">
+                                            @foreach (var item in @ViewBag.Countries)
+                                            {
+                                                <option value="@item.Id"> @item.CountryName </option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label for="lname">PHOTO</label>
+                                    <input name="CustomerPhoto" id="CustomerPhoto" type="file" multiple required />
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 other-information-section">
+                            <h4>OTHER INFORMATION</h4>
+                            <div>
+                                <input class="btn btn-primary btn-sm" id="btnAddAddress" type="button" value="Add" />
+                            </div>
+                            <div>
+                                <table>
+                                    <thead>
+                                    <th>Address</th>
+                                    <th>Actions</th>
+                                    </thead>
+                                    <tbody id="address_tablebody">
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @*   </form>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

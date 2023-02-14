@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewData["Title"] = "GetCustomerManagementPortal";
+}
+
+@model  Front_end.ViewModel.CustomerPortalViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Partial("_Panel")
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    @*@Html.Partial("_DataEntryForm")*@
+                    @*This is Data Entry Form*@
+                    <fieldset>
+                        <legend>Up This Week</legend>
+                        <button>Edit</button>
+                        <input type="submit" form="customerDataEntryForm" asp-action="AddCustomer" asp-controller="CustomerPortal" value="Save" />
+                        <button>Delete</button>
+                        <button>Cancel</button>
+                    </fieldset>
+                    <form id="customerDataEntryForm" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <legend>Up This Week</legend>
+                            <div>
+                                <label for="fname"> NAME:</label>
+                                <input asp-for="CustomerName" type="text" name="CustomerName" />
+                            </div>
+                            <div>
+                                <label for="lname">FATHER NAME</label>
+                                <input asp-for="FatherName" type="text" name="FatherName" />
+                            </div>
+                            <div>
+                                <label for="lname">MOTHER NAME</label>
+                                <input asp-for="MotherName" type="text" name="MotherName" />
+                            </div>
+                            <div>
+                                <label for="lname">MARITAL STATUS</label>
+
+                                <input asp-for="MaritalStatus" type="checkbox" name="MaritalStatus" value="SINGLE">
+                                <label for="lname">SINGLE</label>
+
+                                <input asp-for="MaritalStatus" type="checkbox" name="MaritalStatus" value="MARRIED">
+                                <label for="lname">MARRIED</label>
+
+                                <input asp-for="MaritalStatus" type="checkbox" name="MaritalStatus" value="OTHERS">
+                                <label for="lname">OTHERS</label>
+                            </div>
+
+                            <div>
+                                <select name="CountryId" asp-for="CountryId" asp-items="@ViewBag.Countries"></select>
+                            </div>
+                            <div>
+                                <label for="lname">PHOTO</label>
+                                <input asp-for="CustomerPhoto" type="file" name="CustomerPhoto" multiple required />
+                            </div>
+                            <div>
+                                <input type="submit" value="Submit" asp-action="AddCustomer" asp-controller="CustomerPortal">
+                            </div>
+                        </fieldset>
+
+                        <div>
+                            @*<table>
+                                <thead>
+                                <th>Address</th>
+                                <th>Actions</th>
+                                </thead>
+                                <tbody id="address_tablebody">
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="mytextbox" />
+                                        </td>
+                                        <td>
+                                            <input type="button" value="Edit" />
+                                            <input type="button" value="Delete" />
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
