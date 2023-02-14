@@ -31,6 +31,11 @@ $(document).ready(function () {
     });
 });
 
+
+function loadFile(event) {
+    var image = document.getElementById('output');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
 function getNumberFromId(id) {
     var numberVal = '';
     for (var i = 0; i < id.length; i++) {
@@ -42,7 +47,7 @@ function getNumberFromId(id) {
 }
 function Edit() {
 
-////// Addresssss
+    ////// Addresssss
     var AddressesEdit = [];
     var newObj = { Id: 0, CustomerId: 0 };
     $(".addressBar").each(function () {
@@ -72,15 +77,15 @@ function Edit() {
     else {
         fileEdit = getCustomer.CustomerPhoto;
         dataEdit.append("CustomerPhotoByte", fileEdit);
-        dataEdit.append("FileUploaded",false);
-    } 
+        dataEdit.append("FileUploaded", false);
+    }
     dataEdit.append("CustomerName", $('#CustomerName').val());
     dataEdit.append("FatherName", $('#FatherName').val());
     dataEdit.append("MotherName", $('#MotherName').val());
     dataEdit.append("MaritalStatus", selectedMaritalStatus == "" ? getCustomer.MaritalStatus : selectedMaritalStatus);
     dataEdit.append("CountryId", selectedCountry == "" ? getCustomer.CountryId : selectedCountry);
     dataEdit.append("AllAddress", JSON.stringify({ alladdress: AddressesEdit }));
-    dataEdit.append("Id",getCustomer.Id)
+    dataEdit.append("Id", getCustomer.Id)
 
     var dataBodyJsonEdit = {
         CustomerName: $('#CustomerName').val(),
@@ -88,7 +93,7 @@ function Edit() {
         MotherName: $('#MotherName').val(),
         MaritalStatus: selectedMaritalStatus == "" ? getCustomer.MaritalStatus : selectedMaritalStatus,
         CountryId: selectedCountry == "" ? getCustomer.CountryId : selectedCountry,
-        AllAddress:  AddressesEdit ,
+        AllAddress: AddressesEdit,
         CustomerPhoto: fileEdit,
         CustomerId: getCustomer.Id
     }
@@ -104,6 +109,8 @@ function Edit() {
         success: function (result) {
             alert('Successfully Edited Data ');
             console.log(result);
+            Clear();
+            window.location.reload();
         },
         error: function (error) {
             alert('Failed to receive the Data');
@@ -148,6 +155,7 @@ function submitForm() {
         success: function (result) {
             alert('Successfully received Data ');
             console.log(result);
+            window.location.reaload();
         },
         error: function (error) {
             alert('Failed to receive the Data');
@@ -231,23 +239,31 @@ function getCustomerById(id) {
             Clear();
 
 
+            if (getCustomer.CustomerPhoto.length > 1) {
+                $('#output').attr('src', `data:image/png;base64,${getCustomer.CustomerPhoto}`);
+            }
+            else {
+                $('#output').attr('src', ``);
+            }
+
+
             $('#CustomerName').val(result.Customer.CustomerName);
             $('#FatherName').val(result.Customer.FatherName);
             $('#MotherName').val(result.Customer.MotherName);
             $(".MaritalStatus").each(function () {
                 if ($(this).val() == 'SINGLE' && result.Customer.MaritalStatus == 1) {
                     getCustomer.MaritalStatus = 'SINGLE';
-                    
+
                     $(this).attr('checked', true);
                 }
                 else if ($(this).val() == 'MARRIED' && result.Customer.MaritalStatus == 2) {
                     getCustomer.MaritalStatus = 'MARRIED';
-                    
+
                     $(this).attr('checked', true);
                 }
                 else if ($(this).val() == 'OTHERS' && result.Customer.MaritalStatus == 3) {
                     getCustomer.MaritalStatus = 'OTHERS';
-                    
+
                     $(this).attr('checked', true);
                 }
             });
@@ -298,6 +314,7 @@ function Clear() {
         $(this).remove();
     });
     $("#CustomerPhoto").val(null);
+    $('#output').attr('src', ``);
 }
 function deleteCustomerById() {
 
@@ -311,6 +328,8 @@ function deleteCustomerById() {
         processData: false,
         success: function (result) {
             alert('Data Deleted Successfully');
+            Clear();
+            window.location.reload();
         },
         error: function (error) {
             alert('Failed to receive the Data');

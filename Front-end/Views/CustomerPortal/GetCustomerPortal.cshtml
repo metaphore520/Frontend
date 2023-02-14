@@ -56,9 +56,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-3">
                                         <label for="lname">MARITAL STATUS</label>
-
+                                    </div>
+                                    <div class="col-md-9">
                                         <input class="MaritalStatus" type="checkbox" name="MaritalSt" value="SINGLE">
                                         <label for="lname">SINGLE</label>
 
@@ -70,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-7">
                                         <select class="country">
                                             @foreach (var item in @ViewBag.Countries)
                                             {
@@ -80,8 +81,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label for="lname">PHOTO</label>
-                                    <input name="CustomerPhoto" id="CustomerPhoto" type="file" multiple required />
+                                    <div class="col-md-4">
+                                        <label for="lname" style="color:red">PHOTO*</label> 
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="CustomerPhoto" onchange="loadFile(event)" id="CustomerPhoto" type="file" multiple required />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><img id="output" width="200" /></p>
+                                    </div>
                                 </div>
                             </fieldset>
                         </div>
